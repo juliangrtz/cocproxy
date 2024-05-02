@@ -1,0 +1,17 @@
+{
+  "name": "cocproxy",
+  "version": "1.0.0",
+  "description": "A MITM proxy for the iOS version of Clash of Clans",
+  "private": true,
+  "main": "agent/proxy.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "frida-compile agent/proxy.ts -o _proxy.js -c",
+    "watch": "frida-compile agent/proxy.ts -o _proxy.js -w"
+  },
+  "devDependencies": {
+    "@types/frida-gum": "^18.7.0",
+    "@types/node": "^20.12.8",
+    "frida-compile": "^16.4.1"
+  }
+}
