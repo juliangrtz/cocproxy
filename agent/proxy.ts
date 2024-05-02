@@ -80,7 +80,8 @@ function hookLoginOkDecrypter() {
             console.log(hexdump(buffer, { ansi: true, header: false, length: length }));
             console.log();
 
-            Interceptor.detachAll();
+            hookPepperEncrypter();
+            hookPepperDecrypter();
         }
     });
 }
@@ -114,8 +115,3 @@ function hookPepperDecrypter() {
 hookSend();
 hookRecv();
 hookLogin();
-
-/*
-hookPepperEncrypter();
-hookPepperDecrypter();
-*/
