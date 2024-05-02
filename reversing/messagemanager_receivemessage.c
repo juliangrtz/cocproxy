@@ -1,4 +1,4 @@
-void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
+void __fastcall MessageManager::receiveMessage(__int64 this, __int64 PiranhaMessage)
 {
   __int64 v2; // x8
   _DWORD *v3; // x20
@@ -733,7 +733,7 @@ void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
   __int64 *v738; // x20
   __int64 *v739; // x3
   __int64 *v740; // x4
-  char **v741; // x5
+  int *v741; // x5
   __int64 v742; // x0
   unsigned int v743; // w1
   __int64 v744; // x2
@@ -850,7 +850,7 @@ void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
   int v856; // [xsp+Ch] [xbp-4C4h]
   int v857; // [xsp+Ch] [xbp-4C4h]
   int v858; // [xsp+Ch] [xbp-4C4h]
-  char v859[16]; // [xsp+30h] [xbp-4A0h] BYREF
+  int v859[4]; // [xsp+30h] [xbp-4A0h] BYREF
   __int64 v860[2]; // [xsp+40h] [xbp-490h] BYREF
   char v861[16]; // [xsp+50h] [xbp-480h] BYREF
   char v862[8]; // [xsp+60h] [xbp-470h] BYREF
@@ -978,14 +978,14 @@ void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
   __int64 vars0; // [xsp+4D0h] [xbp+0h]
 
   if ( *off_101054C50 != 6
-    && (*(*a2 + 40LL))(a2) != 20103
-    && (*(*a2 + 40LL))(a2) != 23654
-    && (*(*a2 + 40LL))(a2) != 25874
-    && (*(*a2 + 40LL))(a2) != 26705 )
+    && (*(*PiranhaMessage + 40LL))(PiranhaMessage) != 20103
+    && (*(*PiranhaMessage + 40LL))(PiranhaMessage) != 23654
+    && (*(*PiranhaMessage + 40LL))(PiranhaMessage) != 25874
+    && (*(*PiranhaMessage + 40LL))(PiranhaMessage) != 26705 )
   {
     return;
   }
-  v144 = (*(*a2 + 40LL))(a2);
+  v144 = (*(*PiranhaMessage + 40LL))(PiranhaMessage);
   if ( v144 <= 23882 )
   {
     if ( v144 <= 21961 )
@@ -1003,11 +1003,11 @@ void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
               if ( v144 != 21111 )
                 goto LABEL_611;
               v157 = off_101054C18;
-              sub_1005B44E4(a2);
-              v158 = sub_1005B44EC(a2);
+              sub_1005B44E4(PiranhaMessage);
+              v158 = sub_1005B44EC(PiranhaMessage);
               goto LABEL_586;
             }
-            v369 = sub_1005ED164(a2);
+            v369 = sub_1005ED164(PiranhaMessage);
             if ( !v369 )
               return;
           }
@@ -1019,7 +1019,7 @@ void __fastcall MessageFactory::parseMessage(__int64 a1, __int64 a2)
               {
                 if ( v144 == 21113 )
                 {
-                  v831 = sub_1005EF118(a2);
+                  v831 = sub_1005EF118(PiranhaMessage);
                   if ( v831 )
                   {
                     v832 = v831;
@@ -1049,7 +1049,7 @@ LABEL_1332:
                   }
                   else
                   {
-                    switch ( sub_1005EF110(a2) )
+                    switch ( sub_1005EF110(PiranhaMessage) )
                     {
                       case 0u:
                       case 2u:
@@ -1059,7 +1059,7 @@ LABEL_1332:
                         v837 = "TID_WARNING_INVALID_LAYOUT_CODE";
                         goto LABEL_1345;
                       case 3u:
-                        v840 = sub_1005EF128(a2);
+                        v840 = sub_1005EF128(PiranhaMessage);
                         if ( v840 && (v841 = sub_100B8E344(v840), !sub_1000FC51C(v841)) && (v843 = v842, *(v842 + 4)) )
                         {
                           v844 = sub_1003F4DEC();
@@ -1093,7 +1093,7 @@ LABEL_1345:
                 }
                 goto LABEL_611;
               }
-              v312 = sub_1005ED024(a2);
+              v312 = sub_1005ED024(PiranhaMessage);
               sub_1001BFE60(v312, &v971);
               sub_100D80350(v312);
               operator delete();
@@ -1107,7 +1107,7 @@ LABEL_1345:
             {
               if ( v144 == 21176 )
               {
-                v250 = sub_1005F7C48(a2);
+                v250 = sub_1005F7C48(PiranhaMessage);
                 v251 = off_101054C88;
                 if ( off_101054C88 )
                   sub_100443680(off_101054C88);
@@ -1162,19 +1162,19 @@ LABEL_280:
             if ( !v442 )
               return;
             v443 = v442;
-            if ( sub_1005D97C4(a2) )
+            if ( sub_1005D97C4(PiranhaMessage) )
             {
-              if ( sub_1005D97CC(a2) == 2 )
+              if ( sub_1005D97CC(PiranhaMessage) == 2 )
               {
                 v444 = "TID_NAME_TOO_SHORT";
               }
-              else if ( sub_1005D97CC(a2) == 4 )
+              else if ( sub_1005D97CC(PiranhaMessage) == 4 )
               {
                 v444 = "TID_NAME_ALREADY_CHANGED";
               }
               else
               {
-                if ( sub_1005D97CC(a2) == 5 )
+                if ( sub_1005D97CC(PiranhaMessage) == 5 )
                 {
                   v566 = sub_10050F614();
                   sub_100D82FA4("%i", &v971, *(v566 + 748));
@@ -1195,7 +1195,7 @@ LABEL_280:
               (**v443)(v443, v588);
               goto LABEL_822;
             }
-            v532 = sub_1005D97D4(a2);
+            v532 = sub_1005D97D4(PiranhaMessage);
             (*(*v443 + 16LL))(v443, v532);
             if ( !v532 )
               return;
@@ -1210,10 +1210,10 @@ LABEL_280:
           {
             if ( v144 == 21376 )
             {
-              if ( a2 && off_101054CC0 )
+              if ( PiranhaMessage && off_101054CC0 )
               {
                 sub_100D805D8(&v980, "");
-                v53 = *(a2 + 152);
+                v53 = *(PiranhaMessage + 152);
                 if ( v53 <= 6 )
                   sub_100D8076C(&v980, off_100EF2018[v53]);
                 if ( sub_100D7FA94(&v980) >= 1 )
@@ -1247,7 +1247,7 @@ LABEL_280:
             }
             if ( !off_101054CC0 )
               return;
-            v147 = sub_1005D5F84(a2);
+            v147 = sub_1005D5F84(PiranhaMessage);
             if ( v147 == 2 )
             {
               v148 = "TID_ALLIANCE_WAR_VISIT_FAILED_UNAVAILABLE";
@@ -1301,7 +1301,7 @@ LABEL_342:
             if ( (*(*v220 + 392LL))(v220) != 2 )
               return;
           }
-          sub_1005E62CC(a2);
+          sub_1005E62CC(PiranhaMessage);
           v221 = sub_1001C307C(v217);
           v222 = (*(*v221 + 392LL))(v221);
           v223 = sub_1001C307C(v217);
@@ -1325,15 +1325,15 @@ LABEL_846:
             if ( !sub_100D80EC4(v574, v575) )
               goto LABEL_845;
           }
-          v576 = sub_1005E62DC(a2);
+          v576 = sub_1005E62DC(PiranhaMessage);
           switch ( v576 )
           {
             case 0:
-              v577 = sub_1005E62E4(a2);
-              v578 = sub_1005E62D4(a2);
-              v579 = sub_1005E62F4(a2);
-              v580 = sub_1005E62FC(a2);
-              v581 = sub_1005E62EC(a2);
+              v577 = sub_1005E62E4(PiranhaMessage);
+              v578 = sub_1005E62D4(PiranhaMessage);
+              v579 = sub_1005E62F4(PiranhaMessage);
+              v580 = sub_1005E62FC(PiranhaMessage);
+              v581 = sub_1005E62EC(PiranhaMessage);
               if ( !sub_100B8E370(v579) && *(v580 + 4) )
               {
                 operator new(256LL);
@@ -1379,12 +1379,12 @@ LABEL_846:
           {
             if ( dword_101054E90 == 2 )
             {
-              v457 = sub_1005EBF94(a2);
-              sub_1005EBFA4(a2, &v969);
-              sub_1005EBFB4(a2, &v967);
-              sub_1005EBF8C(a2);
-              v458 = sub_1005EBFC4(a2);
-              sub_1005EBFD4(a2, &v965);
+              v457 = sub_1005EBF94(PiranhaMessage);
+              sub_1005EBFA4(PiranhaMessage, &v969);
+              sub_1005EBFB4(PiranhaMessage, &v967);
+              sub_1005EBF8C(PiranhaMessage);
+              v458 = sub_1005EBFC4(PiranhaMessage);
+              sub_1005EBFD4(PiranhaMessage, &v965);
               switch ( v458 )
               {
                 case 1:
@@ -1392,9 +1392,9 @@ LABEL_846:
                   v951 = v969;
                   v950 = v967;
                   v949 = v965;
-                  v460 = sub_1005EC1F4(a2);
+                  v460 = sub_1005EC1F4(PiranhaMessage);
                   v948 = 0LL;
-                  v853 = sub_1005EC1FC(a2);
+                  v853 = sub_1005EC1FC(PiranhaMessage);
                   sub_1003F538C(v459, v457, &v951, &v950, v461, 2LL, 1, 0, 0.0, &v949, v460, v853, 0, 0LL, &v948);
                   break;
                 case 2:
@@ -1402,9 +1402,9 @@ LABEL_846:
                   v947 = v969;
                   v946.i64[1] = v967;
                   v946.i64[0] = v965;
-                  v535 = sub_1005EC1F4(a2);
+                  v535 = sub_1005EC1F4(PiranhaMessage);
                   v945 = 0LL;
-                  v854 = sub_1005EC1FC(a2);
+                  v854 = sub_1005EC1FC(PiranhaMessage);
                   sub_1003F538C(v534, v457, &v947, &v946.i64[1], v536, 2LL, 2, 0, 0.0, &v946, v535, v854, 0, 0LL, &v945);
                   break;
                 case 3:
@@ -1412,9 +1412,9 @@ LABEL_846:
                   v944 = v969;
                   v943 = v967;
                   v942 = v965;
-                  v538 = sub_1005EC1F4(a2);
+                  v538 = sub_1005EC1F4(PiranhaMessage);
                   v941 = 0LL;
-                  v855 = sub_1005EC1FC(a2);
+                  v855 = sub_1005EC1FC(PiranhaMessage);
                   sub_1003F538C(v537, v457, &v944, &v943, v539, 2LL, 3, 0, 0.0, &v942, v538, v855, 0, 0LL, &v941);
                   break;
                 case 10:
@@ -1422,9 +1422,9 @@ LABEL_846:
                   v940 = v969;
                   v939 = v967;
                   v938 = v965;
-                  v545 = sub_1005EC1F4(a2);
+                  v545 = sub_1005EC1F4(PiranhaMessage);
                   v937 = 0LL;
-                  v857 = sub_1005EC1FC(a2);
+                  v857 = sub_1005EC1FC(PiranhaMessage);
                   sub_1003F538C(v544, v457, &v940, &v939, v546, 2LL, 10, 0, 0.0, &v938, v545, v857, 0, 0LL, &v937);
                   break;
                 default:
@@ -1437,9 +1437,9 @@ LABEL_846:
                         v928 = v969;
                         v927 = v967;
                         v926 = v965;
-                        v590 = sub_1005EC1F4(a2);
-                        v591 = sub_1005EC1FC(a2);
-                        sub_1005EBFE4(a2, v925);
+                        v590 = sub_1005EC1F4(PiranhaMessage);
+                        v591 = sub_1005EC1FC(PiranhaMessage);
+                        sub_1005EBFE4(PiranhaMessage, v925);
                         sub_1003F538C(v589, v457, &v928, &v927, v592, 2LL, 13, 0, 0.0, &v926, v590, v591, 0, 0LL, v925);
                         break;
                       case 0xC:
@@ -1447,9 +1447,9 @@ LABEL_846:
                         v924 = v969;
                         v923 = v967;
                         v922 = v965;
-                        v594 = sub_1005EC1F4(a2);
-                        v595 = sub_1005EC1FC(a2);
-                        sub_1005EBFE4(a2, v921);
+                        v594 = sub_1005EC1F4(PiranhaMessage);
+                        v595 = sub_1005EC1FC(PiranhaMessage);
+                        sub_1005EBFE4(PiranhaMessage, v921);
                         sub_1003F538C(v593, v457, &v924, &v923, v596, 2LL, 12, 0, 0.0, &v922, v594, v595, 0, 0LL, v921);
                         break;
                       case 0xB:
@@ -1457,9 +1457,9 @@ LABEL_846:
                         v932 = v969;
                         v931 = v967;
                         v930 = v965;
-                        v562 = sub_1005EC1F4(a2);
+                        v562 = sub_1005EC1F4(PiranhaMessage);
                         v929 = 0LL;
-                        v858 = sub_1005EC1FC(a2);
+                        v858 = sub_1005EC1FC(PiranhaMessage);
                         sub_1003F538C(v561, v457, &v932, &v931, v563, 2LL, 11, 0, 0.0, &v930, v562, v858, 0, 0LL, &v929);
                         break;
                       default:
@@ -1495,14 +1495,14 @@ LABEL_846:
                     v540 = sub_1003F4DEC();
                     v936 = v969;
                     v935 = v967;
-                    if ( sub_1005EBFCC(a2) )
+                    if ( sub_1005EBFCC(PiranhaMessage) )
                       v541 = 6;
                     else
                       v541 = 5;
                     v934 = v965;
-                    v542 = sub_1005EC1F4(a2);
+                    v542 = sub_1005EC1F4(PiranhaMessage);
                     v933 = 0LL;
-                    v856 = sub_1005EC1FC(a2);
+                    v856 = sub_1005EC1FC(PiranhaMessage);
                     sub_1003F538C(v540, v457, &v936, &v935, v543, 2LL, v541, 0, 0.0, &v934, v542, v856, 0, 0LL, &v933);
                   }
                   break;
@@ -1516,7 +1516,7 @@ LABEL_846:
           }
           if ( v144 != 21941 )
             goto LABEL_611;
-          sub_100D9B508(*(a2 + 144));
+          sub_100D9B508(*(PiranhaMessage + 144));
           sub_100D805D8(&v971, "");
           sub_1003F5260(&v971);
           goto LABEL_822;
@@ -1525,7 +1525,7 @@ LABEL_846:
         {
           if ( !off_101054CD0 )
             return;
-          v333 = sub_1005E995C(a2);
+          v333 = sub_1005E995C(PiranhaMessage);
           if ( !v333 )
             return;
           v334 = v333;
@@ -1547,12 +1547,12 @@ LABEL_134:
           {
             if ( v144 == 20171 )
             {
-              *(a1 + 60) = sub_1005B7F74(a2);
+              *(this + 60) = sub_1005B7F74(PiranhaMessage);
               return;
             }
             if ( v144 == 20206 )
             {
-              sub_1001CBA38(off_101054CD0, a2);
+              sub_1001CBA38(off_101054CD0, PiranhaMessage);
               return;
             }
             goto LABEL_611;
@@ -1576,7 +1576,7 @@ LABEL_134:
           if ( !off_101054CC0 )
             return;
           sub_100D805D8(&v971, "TID_ADD_FRIEND_ERROR_GENERIC");
-          v438 = sub_1005E845C(a2) - 1;
+          v438 = sub_1005E845C(PiranhaMessage) - 1;
           if ( v438 > 7 || ((0xDBu >> v438) & 1) == 0 )
             goto LABEL_819;
           v426 = off_100F24970[v438];
@@ -1588,18 +1588,18 @@ LABEL_134:
           {
             if ( v144 == 20108 )
             {
-              *(a1 + 68) = 0;
+              *(this + 68) = 0;
               return;
             }
             goto LABEL_611;
           }
           v978 = v974;
           v979 = v975;
-          *(a1 + 20) = 0;
-          v597 = (*(*a2 + 64LL))(a2);
+          *(this + 20) = 0;
+          v597 = (*(*PiranhaMessage + 64LL))(PiranhaMessage);
           sub_100D82FA4("Login failed (error code = %i)", &v965, v597);
           sub_100D80350(&v965);
-          (*(*a2 + 80LL))(a2);
+          (*(*PiranhaMessage + 80LL))(PiranhaMessage);
           sub_100D805D8(&v975, "");
           if ( v598 )
           {
@@ -1607,17 +1607,17 @@ LABEL_134:
             sub_100D80350(v599);
             operator delete();
           }
-          (*(*a2 + 64LL))(a2);
+          (*(*PiranhaMessage + 64LL))(PiranhaMessage);
           v600 = (loc_1000DC03C)();
           if ( v600 )
           {
             v602 = (loc_1000DC03C)();
             v603 = sub_1000E0E68(v602, 0LL);
             v604 = (loc_1000DC03C)(v603);
-            v605 = sub_1005B650C(a2);
+            v605 = sub_1005B650C(PiranhaMessage);
             v606 = sub_1000E0FA0(v604, v605);
             v607 = (loc_1000DC03C)(v606);
-            v608 = sub_1005B6524(a2);
+            v608 = sub_1005B6524(PiranhaMessage);
             v600 = sub_1000E0FD4(v607, v608);
           }
           switch ( v601 )
@@ -1625,8 +1625,8 @@ LABEL_134:
             case 7:
               if ( qword_1010A1FA0 )
               {
-                v612 = sub_1005B6470(a2);
-                v613 = sub_1005B64EC(a2);
+                v612 = sub_1005B6470(PiranhaMessage);
+                v613 = sub_1005B64EC(PiranhaMessage);
                 sub_10040EFD8(v613, &v965);
                 if ( v612 )
                 {
@@ -1634,8 +1634,8 @@ LABEL_134:
                 }
                 else
                 {
-                  v645 = sub_1005B64D0(a2);
-                  v646 = sub_1005B64D8(a2);
+                  v645 = sub_1005B64D0(PiranhaMessage);
+                  v646 = sub_1005B64D8(PiranhaMessage);
                   v977 = 0LL;
                   v647 = sub_100D6ABA0(v646, v645, &v977, 0);
                   if ( v647 < 1 )
@@ -1663,7 +1663,7 @@ LABEL_134:
               }
               goto LABEL_911;
             case 8:
-              v614 = sub_1005B6490(a2);
+              v614 = sub_1005B6490(PiranhaMessage);
               v615 = sub_100D805D8(&v965, "");
               if ( v614 )
                 v615 = sub_100D80874(&v965, v614);
@@ -1673,7 +1673,7 @@ LABEL_134:
               sub_100D8060C(&v972, &v975);
               sub_100D805D8(&v970, "");
               sub_100D805D8(&v968, v619);
-              sub_1000DE354(v618, 6u, 8LL, &v972, &v970, &v968);
+              GameMain::showNativeDialog(v618, 6u, 8LL, &v972, &v970, &v968);
               sub_100D80350(&v968);
               sub_100D80350(&v970);
               sub_100D80350(&v972);
@@ -1688,12 +1688,12 @@ LABEL_134:
             case 9:
               sub_1001B3EDC(off_101054C50, 0);
               v620 = off_101054C50;
-              sub_1005B6480(a2, &v974);
+              sub_1005B6480(PiranhaMessage, &v974);
               sub_1001B4038(v620, &v974);
               goto LABEL_913;
             case 10:
-              v621 = (*(*a2 + 96LL))(a2);
-              v622 = sub_1005B6504(a2);
+              v621 = (*(*PiranhaMessage + 96LL))(PiranhaMessage);
+              v622 = sub_1005B6504(PiranhaMessage);
               if ( sub_100401BF4(off_101054CA0)
                 && sub_10050FFF8()
                 && *(sub_10050FFF8() + 1001)
@@ -1714,7 +1714,7 @@ LABEL_134:
                 sub_100D8060C(v964, &v975);
                 sub_100D805D8(v963, "");
                 sub_100D805D8(v962, v643);
-                sub_1000DE354(v642, 8u, v621, v964, v963, v962);
+                GameMain::showNativeDialog(v642, 8u, v621, v964, v963, v962);
                 sub_100D80350(v962);
                 sub_100D80350(v963);
                 v611 = v964;
@@ -1727,8 +1727,8 @@ LABEL_912:
               *v644 = 3;
               goto LABEL_913;
             case 11:
-              v626 = sub_1005B6514(a2);
-              sub_1005B64C8(a2);
+              v626 = sub_1005B6514(PiranhaMessage);
+              sub_1005B64C8(PiranhaMessage);
               v627 = qword_1010A1FA0;
               if ( qword_1010A1FA0 )
               {
@@ -1748,7 +1748,7 @@ LABEL_912:
               sub_100D8060C(&v960, &v975);
               sub_100D805D8(&v958, "");
               sub_100D805D8(&v956, "");
-              sub_1000DE354(v609, 0xBu, v610, &v960, &v958, &v956);
+              GameMain::showNativeDialog(v609, 0xBu, v610, &v960, &v958, &v956);
               sub_100D80350(&v956);
               sub_100D80350(&v958);
               v611 = &v960;
@@ -1756,7 +1756,7 @@ LABEL_912:
             case 13:
               if ( qword_1010A1FA0 )
               {
-                v631 = sub_1005B6514(a2);
+                v631 = sub_1005B6514(PiranhaMessage);
                 operator new(384LL);
                 v633 = v632;
                 sub_1003A84C4(v632, v631, v634);
@@ -1765,14 +1765,14 @@ LABEL_912:
                   operator delete();
               }
               *off_101054C50 = 9;
-              *(a1 + 56) = 0;
+              *(this + 56) = 0;
               goto LABEL_913;
             case 16:
               v638 = (loc_1000DC03C)(v600);
               sub_100D8060C(&v954, &v975);
               sub_100D805D8(&v952, "");
               sub_100D805D8(&v950, "");
-              sub_1000DE354(v638, 0x10u, 16LL, &v954, &v952, &v950);
+              GameMain::showNativeDialog(v638, 0x10u, 16LL, &v954, &v952, &v950);
               sub_100D80350(&v950);
               sub_100D80350(&v952);
               v611 = &v954;
@@ -1782,7 +1782,7 @@ LABEL_912:
               sub_100D8060C(&v948, &v975);
               sub_100D805D8(&v946.i64[1], "");
               sub_100D805D8(&v945, "");
-              sub_1000DE354(v639, 3u, 17LL, &v948, &v946.i64[1], &v945);
+              GameMain::showNativeDialog(v639, 3u, 17LL, &v948, &v946.i64[1], &v945);
               sub_100D80350(&v945);
               sub_100D80350(&v946.i64[1]);
               sub_100D80350(&v948);
@@ -1793,7 +1793,7 @@ LABEL_912:
               sub_100D8060C(&v943, &v975);
               sub_100D805D8(&v941, "");
               sub_100D805D8(&v939, "");
-              sub_1000DE354(v641, 0x15u, 18LL, &v943, &v941, &v939);
+              GameMain::showNativeDialog(v641, 0x15u, 18LL, &v943, &v941, &v939);
               sub_100D80350(&v939);
               sub_100D80350(&v941);
               v611 = &v943;
@@ -1831,7 +1831,7 @@ LABEL_932:
                   sub_100D8060C(&v937, &v975);
                   sub_100D805D8(&v935, "");
                   sub_100D805D8(&v933, "");
-                  sub_1000DE354(v655, 0x16u, 24LL, &v937, &v935, &v933);
+                  GameMain::showNativeDialog(v655, 0x16u, 24LL, &v937, &v935, &v933);
                   sub_100D80350(&v933);
                   sub_100D80350(&v935);
                   v656 = &v937;
@@ -1841,7 +1841,7 @@ LABEL_932:
                   sub_100D8060C(&v931, &v975);
                   sub_100D805D8(&v929, "");
                   sub_100D805D8(&v927, "");
-                  sub_1000DE354(v657, 0x17u, 25LL, &v931, &v929, &v927);
+                  GameMain::showNativeDialog(v657, 0x17u, 25LL, &v931, &v929, &v927);
                   sub_100D80350(&v927);
                   sub_100D80350(&v929);
                   v656 = &v931;
@@ -1851,11 +1851,11 @@ LABEL_935:
                   goto LABEL_937;
                 case 26:
                   v658 = (loc_1000DC03C)();
-                  v659 = (*(*a2 + 96LL))(a2);
+                  v659 = (*(*PiranhaMessage + 96LL))(PiranhaMessage);
                   sub_100D8060C(v925, &v975);
                   sub_100D805D8(&v923, "");
                   sub_100D805D8(v921, v660);
-                  sub_1000DE354(v658, 0x19u, v659, v925, &v923, v921);
+                  GameMain::showNativeDialog(v658, 0x19u, v659, v925, &v923, v921);
                   sub_100D80350(v921);
                   sub_100D80350(&v923);
                   sub_100D80350(v925);
@@ -1873,7 +1873,7 @@ LABEL_937:
                   sub_100D8060C(&v919, &v975);
                   sub_100D805D8(&v917, "");
                   sub_100D805D8(&v915, "");
-                  sub_1000DE354(v653, 3u, v654, &v919, &v917, &v915);
+                  GameMain::showNativeDialog(v653, 3u, v654, &v919, &v917, &v915);
                   sub_100D80350(&v915);
                   sub_100D80350(&v917);
                   sub_100D80350(&v919);
@@ -1888,7 +1888,7 @@ LABEL_913:
               return;
           }
         }
-        v360 = sub_1005CAFCC(a2);
+        v360 = sub_1005CAFCC(PiranhaMessage);
         if ( v360 == 3 )
         {
           v265 = "TID_CHALLENGE_FAIL_SERVER";
@@ -1917,7 +1917,7 @@ LABEL_746:
             if ( sub_1003F4DEC() )
             {
               v412 = sub_1003F4DEC();
-              v413 = sub_1005EFAB0(a2);
+              v413 = sub_1005EFAB0(PiranhaMessage);
               sub_1003F5A7C(v412, v413);
             }
             return;
@@ -1925,11 +1925,11 @@ LABEL_746:
           v159 = 20720;
           goto LABEL_228;
         }
-        v402 = sub_1005EC98C(a2);
+        v402 = sub_1005EC98C(PiranhaMessage);
         if ( v402 < 1 )
           return;
         v403 = v402;
-        v404 = sub_1005EC978(a2);
+        v404 = sub_1005EC978(PiranhaMessage);
         v969 = 0LL;
         v405 = sub_100D6ABA0(v404, v403, &v969, 0);
         if ( v405 >= 1 )
@@ -1965,7 +1965,7 @@ LABEL_542:
         {
           if ( !off_101054CC0 )
             return;
-          if ( *(a2 + 144) == 1 )
+          if ( *(PiranhaMessage + 144) == 1 )
             v183 = "TID_CAPITAL_RAID_VISIT_FAILED_INVALID_TARGET";
           else
             v183 = "TID_CAPITAL_RAID_VISIT_FAILED";
@@ -1980,7 +1980,7 @@ LABEL_542:
         {
           if ( off_101054CC0 )
           {
-            switch ( *(a2 + 144) )
+            switch ( *(PiranhaMessage + 144) )
             {
               case 1:
                 v365 = "TID_PLAYER_REPORTED_SUCCESSFULLY";
@@ -2004,8 +2004,8 @@ LABEL_542:
         goto LABEL_611;
       }
       v157 = off_101054C18;
-      sub_1005B4050(a2);
-      v158 = sub_1005B4058(a2);
+      sub_1005B4050(PiranhaMessage);
+      v158 = sub_1005B4058(PiranhaMessage);
 LABEL_586:
       v446 = v158;
       v447 = v157;
@@ -2056,8 +2056,8 @@ LABEL_586:
               v474 = "AllianceWarAttackAvatarMessage received but GameMode is null!";
               goto LABEL_636;
             }
-            v376 = sub_1005D3370(a2);
-            sub_1005D3390(a2, &v969);
+            v376 = sub_1005D3370(PiranhaMessage);
+            sub_1005D3390(PiranhaMessage, &v969);
             v377 = *(v376 + 40);
             if ( v377 < 1 )
               return;
@@ -2069,17 +2069,17 @@ LABEL_586:
               sub_100D805A4(&v971, v967, v379);
               sub_1001BA464(v376, &v971);
               sub_100D80350(&v971);
-              v381 = sub_1005D3444(a2);
+              v381 = sub_1005D3444(PiranhaMessage);
               if ( v381 > 2 )
                 v382 = 0;
               else
                 v382 = *(&off_100DDE4D0 + v381);
               v530 = sub_1003F4DEC();
               v920 = v969;
-              sub_1005D3380(a2, &v971);
+              sub_1005D3380(PiranhaMessage, &v971);
               v919 = v971;
               v918 = 0LL;
-              v531 = sub_1005D33A0(a2);
+              v531 = sub_1005D33A0(PiranhaMessage);
               v917 = 0LL;
               sub_1003F538C(v530, v376, &v920, &v919, 0, 2LL, v382, 0, 0.0, &v918, -1, v531, 0, 0LL, &v917);
             }
@@ -2095,7 +2095,7 @@ LABEL_586:
             v383 = off_101054BE8;
             if ( off_101054BE8 )
             {
-              v384 = *(a2 + 144);
+              v384 = *(PiranhaMessage + 144);
               if ( v384 )
               {
                 sub_100D830B0(v384, &v969);
@@ -2125,7 +2125,7 @@ LABEL_586:
           if ( !off_101054CC0 )
             return;
           sub_100D80308(&v971);
-          v184 = *(a2 + 144);
+          v184 = *(PiranhaMessage + 144);
           if ( v184 )
           {
             if ( v184 == 1 )
@@ -2163,7 +2163,7 @@ LABEL_586:
                       sub_100120434(v264);
                   }
                 }
-                switch ( sub_1005BC2E0(a2) )
+                switch ( sub_1005BC2E0(PiranhaMessage) )
                 {
                   case 1u:
                   case 4u:
@@ -2198,9 +2198,9 @@ LABEL_586:
           {
             if ( sub_1003F4DEC() )
             {
-              v315 = *(a2 + 144);
+              v315 = *(PiranhaMessage + 144);
               v316 = sub_1003F4DEC();
-              v317 = *(a2 + 156);
+              v317 = *(PiranhaMessage + 156);
               if ( v315 < 1 )
               {
                 v141 = *(v316 + 400);
@@ -2221,8 +2221,8 @@ LABEL_586:
               }
               else
               {
-                sub_1003F5A18(v316, v317, *(a2 + 152), *(a2 + 144));
-                v318 = *(a2 + 152);
+                sub_1003F5A18(v316, v317, *(PiranhaMessage + 152), *(PiranhaMessage + 144));
+                v318 = *(PiranhaMessage + 152);
                 if ( (v318 & 0xFFFFFFFE) != 6 )
                 {
                   v319 = v318 == 4 ? "TID_CHAT_JUST_DISABLED" : "TID_CHAT_JUST_BANNED";
@@ -2264,14 +2264,14 @@ LABEL_586:
           {
             if ( *(sub_1003F4DEC() + 8) == 4 || (v160 = sub_1003F4DEC(), sub_1003F5584(v160, 4)) )
             {
-              v161 = sub_1005EADFC(a2);
+              v161 = sub_1005EADFC(PiranhaMessage);
               sub_1003FB33C(v161);
               return;
             }
           }
           if ( !off_101054CC0 )
             return;
-          v476 = sub_1005EADFC(a2);
+          v476 = sub_1005EADFC(PiranhaMessage);
           sub_10040EBE0(v476, &v971);
         }
         v366 = &v971;
@@ -2291,9 +2291,9 @@ LABEL_821:
             {
               sub_1001342A0(off_101054CF0);
               v468 = *v467;
-              v469 = sub_1005C8D30(a2);
+              v469 = sub_1005C8D30(PiranhaMessage);
               sub_100134E58(v468, v469);
-              v470 = sub_1005C8D20(a2);
+              v470 = sub_1005C8D20(PiranhaMessage);
               if ( *(v470 + 12) >= 1 )
               {
                 v472 = 0LL;
@@ -2316,8 +2316,8 @@ LABEL_821:
             v299 = off_101054CF0;
             if ( off_101054CF0 )
             {
-              sub_100B8E344(*(a2 + 144));
-              v300 = sub_100B8E344(*(a2 + 152));
+              sub_100B8E344(*(PiranhaMessage + 144));
+              v300 = sub_100B8E344(*(PiranhaMessage + 152));
               sub_1001360A0(v299, v301, v300);
             }
             return;
@@ -2330,8 +2330,8 @@ LABEL_821:
             if ( *(sub_10050F614() + 716)
               && (!sub_1003F4DEC() || *(sub_1003F4DEC() + 120) <= 0.0 || *(sub_10050F614() + 717)) )
             {
-              v335 = sub_1005EDD48(a2);
-              sub_1005EDD38(a2, &v971);
+              v335 = sub_1005EDD48(PiranhaMessage);
+              sub_1005EDD38(PiranhaMessage, &v971);
               if ( off_101054DD8 )
               {
                 sub_1001AC638(off_101054DD8);
@@ -2367,10 +2367,10 @@ LABEL_1363:
                 }
                 v971 = 0LL;
               }
-              sub_1005EDD50(a2, &v969);
-              if ( sub_1005EDD30(a2) >= 1 )
+              sub_1005EDD50(PiranhaMessage, &v969);
+              if ( sub_1005EDD30(PiranhaMessage) >= 1 )
               {
-                v342 = sub_1005EDD1C(a2);
+                v342 = sub_1005EDD1C(PiranhaMessage);
                 v967 = 0LL;
                 if ( sub_100D6ABA0(v342, v343, &v967, 0) >= 1 )
                 {
@@ -2391,7 +2391,7 @@ LABEL_1363:
               }
               if ( v969 )
               {
-                sub_1005EDD70(a2, &v967);
+                sub_1005EDD70(PiranhaMessage, &v967);
                 if ( v967 )
                   v347 = 13;
                 else
@@ -2413,13 +2413,13 @@ LABEL_1363:
                     sub_1003EAA80(v572, &v898, &v897);
                     sub_1003E6A44();
                     v896 = 0LL;
-                    sub_1005EDD60(a2, v895);
+                    sub_1005EDD60(PiranhaMessage, v895);
                     sub_1003EAE50(v573, v570, 0LL, 0LL, 0, 5, 0, 0, &v896, 0LL, v895);
                     return;
                   }
                   sub_1003F4DEC();
                   v894 = v969;
-                  sub_1005EDD60(a2, &v893);
+                  sub_1005EDD60(PiranhaMessage, &v893);
                   v353 = &v894;
                   v354 = &v893;
                 }
@@ -2436,7 +2436,7 @@ LABEL_1363:
                   sub_1003F538C(v350, v351, &v892, &v891, 0, 0LL, 0, 0, 0.0, &v890, -1, -1, 0, 0LL, &v889);
                   sub_1003F4DEC();
                   v888 = v969;
-                  sub_1005EDD60(a2, &v887);
+                  sub_1005EDD60(PiranhaMessage, &v887);
                   v353 = &v888;
                   v354 = &v887;
                 }
@@ -2448,10 +2448,10 @@ LABEL_1363:
           }
           if ( v144 == 23723 )
           {
-            if ( a2 && off_101054CC0 )
+            if ( PiranhaMessage && off_101054CC0 )
             {
               sub_100D805D8(&v980, "");
-              v49 = *(a2 + 144) - 1;
+              v49 = *(PiranhaMessage + 144) - 1;
               if ( v49 > 5 )
                 v50 = "TID_CHAT_ERROR_UNDEFINED";
               else
@@ -2485,9 +2485,9 @@ LABEL_1363:
         }
         if ( *(off_101054BE8 + 64) && (sub_100D1E4AC(off_101054BE8) || (sub_100D1EE7C(off_101054BE8) & 1) != 0) )
           return;
-        if ( !*(a2 + 176) || !*(off_101054BE8 + 64) )
+        if ( !*(PiranhaMessage + 176) || !*(off_101054BE8 + 64) )
         {
-          v488 = sub_1005EA788(a2);
+          v488 = sub_1005EA788(PiranhaMessage);
           if ( !v488 )
           {
             v265 = "TID_GOOGLE_ACCOUNT_ALREADY_BOUND";
@@ -2495,11 +2495,11 @@ LABEL_1363:
           }
           if ( !off_101054C80 )
             goto LABEL_774;
-          sub_1005EA740(a2, v488);
+          sub_1005EA740(PiranhaMessage, v488);
           operator new(528LL);
           v330 = 9LL;
 LABEL_651:
-          sub_100343348(v329, v330, a2);
+          sub_100343348(v329, v330, PiranhaMessage);
           goto LABEL_652;
         }
         if ( (sub_1004435A0(off_101054C88) & 1) != 0 )
@@ -2539,11 +2539,11 @@ LABEL_410:
         v667 = (*(*v664 + 104LL))(v664, 2400LL);
         v668 = (loc_1000DC03C)(v667);
         sub_1005B64FC(v664, *(v668 + 516));
-        MessageFactory::parseMessage(byte_101054CC8, v664);
+        MessageManager::receiveMessage(byte_101054CC8, v664);
         *((loc_1000DC03C)() + 516) = -1;
         return;
       }
-      *(a1 + 20) = 0;
+      *(this + 20) = 0;
       if ( *off_101054C50 != 2 )
         return;
       if ( !*(off_101054C50 + 145) )
@@ -2552,19 +2552,19 @@ LABEL_410:
         return;
       }
       *off_101054C50 = 6;
-      *(a1 + 56) = 0;
-      *(a1 + 72) = (loc_100D9FF94)();
+      *(this + 56) = 0;
+      *(this + 72) = (loc_100D9FF94)();
       if ( sub_10019F5FC(off_101054C18) )
         v669 = sub_10019F87C(off_101054C18);
       else
         v669 = sub_10019F60C(off_101054C18);
       (loc_1000DC03C)(v669);
-      v670 = sub_1005B7A58(a2);
+      v670 = sub_1005B7A58(PiranhaMessage);
       *(v671 + 488) = v670;
       v672 = off_101054C50;
       v673 = sub_1001B49A0(off_101054C50, *(off_101054C50 + 5));
-      sub_1005B7A38(a2);
-      v674 = sub_1005B7A18(a2);
+      sub_1005B7A38(PiranhaMessage);
+      v674 = sub_1005B7A18(PiranhaMessage);
       v675 = sub_10050F614();
       v676 = &off_101054BE8;
       if ( v675 )
@@ -2587,10 +2587,10 @@ LABEL_410:
       sub_100B8E410(v674);
       v679 = sub_1000E0E68(v677, v678);
       v680 = (loc_1000DC03C)(v679);
-      v681 = sub_1005B7D90(a2);
+      v681 = sub_1005B7D90(PiranhaMessage);
       v682 = sub_1000E0FA0(v680, v681);
       v683 = (loc_1000DC03C)(v682);
-      v684 = sub_1005B7E1C(a2);
+      v684 = sub_1005B7E1C(PiranhaMessage);
       sub_1000E0FD4(v683, v684);
       sub_100B152E8(*v674, *(v674 + 1));
       qword_1010CF3E8 = nullsub_70;
@@ -2601,7 +2601,7 @@ LABEL_410:
         do
         {
           Messaging::send(
-            *a1,
+            *this,
             *(*(qword_1010A2028 + ((xmmword_1010A2040 >> 6) & 0x3FFFFFFFFFFFFF8LL)) + 8 * (xmmword_1010A2040 & 0x1FF)));
           xmmword_1010A2040 = vaddq_s64(xmmword_1010A2040, v946);
           sub_10040FB74(&unk_1010A2020, 1);
@@ -2616,14 +2616,14 @@ LABEL_410:
         if ( !v686 )
         {
 LABEL_962:
-          *(a1 + 16) = v688;
+          *(this + 16) = v688;
           v946.i64[0] = v672;
           sub_1001B523C(v672, 0);
           sub_100D80308(&v971);
-          v689 = sub_1005B7A60(a2);
+          v689 = sub_1005B7A60(PiranhaMessage);
           sub_100BA5698(&v971, v689, "");
           sub_100D80308(&v969);
-          v690 = sub_1005B7AA0(a2);
+          v690 = sub_1005B7AA0(PiranhaMessage);
           sub_100BA5698(&v969, v690, "");
           sub_100D88544(&v969);
           v691 = sub_1003F4DEC();
@@ -2632,24 +2632,24 @@ LABEL_962:
             v693 = v691;
             sub_100D80874(v691 + 176, &v969);
             sub_100D80308(v966);
-            v694 = sub_1005B7A78(a2);
+            v694 = sub_1005B7A78(PiranhaMessage);
             sub_100BA5698(v966, v694, "");
             sub_100D80874(v693 + 368, v966);
-            *(v693 + 384) = sub_1005B7A70(a2);
+            *(v693 + 384) = sub_1005B7A70(PiranhaMessage);
             sub_100D80350(v966);
           }
           v695 = v692;
-          if ( sub_1005B7A98(a2) >= 1 )
+          if ( sub_1005B7A98(PiranhaMessage) >= 1 )
           {
             v696 = sub_1003F4DEC();
-            v697 = sub_1005B7A98(a2);
+            v697 = sub_1005B7A98(PiranhaMessage);
             sub_1003F5A64(v696, v697 + 5);
           }
           if ( off_101054C30 )
           {
-            v698 = sub_1005B7D50(a2);
+            v698 = sub_1005B7D50(PiranhaMessage);
             sub_10040EFD8(v698, v966);
-            v699 = sub_1005B7D60(a2);
+            v699 = sub_1005B7D60(PiranhaMessage);
             sub_10040EFD8(v699, v964);
             sub_100403848(off_101054C30, v966, v964);
             v963[0] = v964;
@@ -2661,11 +2661,11 @@ LABEL_962:
           v701 = *v676;
           if ( *(*v676 + 64) )
           {
-            sub_1005B7DA8(a2, v966);
+            sub_1005B7DA8(PiranhaMessage, v966);
             v702 = sub_100B8E43C(v674);
             v703 = v673;
             v704 = sub_100B8E444(v674);
-            v705 = sub_1005B7E04(a2);
+            v705 = sub_1005B7E04(PiranhaMessage);
             v706 = v702;
             v676 = v707;
             v708 = v704;
@@ -2676,13 +2676,13 @@ LABEL_962:
           if ( off_101054C78 )
           {
             sub_100D80308(v966);
-            v709 = sub_1005B7A48(a2);
+            v709 = sub_1005B7A48(PiranhaMessage);
             sub_100BA5698(v966, v709, "");
             sub_1001CC458(off_101054C78, v966);
             sub_100D80350(v966);
           }
           sub_100D80308(v966);
-          v710 = sub_1005B7D70(a2);
+          v710 = sub_1005B7D70(PiranhaMessage);
           sub_100BA5698(v966, v710, "");
           sub_1001F82F0(off_101054C80, v966);
           if ( sub_100BD1534() && sub_10050FFF8() && *(sub_10050FFF8() + 1372) )
@@ -2699,22 +2699,22 @@ LABEL_962:
             sub_100D80350(v963);
             sub_100D80350(v964);
           }
-          v715 = sub_1005B7D80(a2);
-          v716 = sub_100BA5698(a1 + 24, v715, "");
+          v715 = sub_1005B7D80(PiranhaMessage);
+          v716 = sub_100BA5698(this + 24, v715, "");
           v717 = (loc_1000DC03C)(v716);
-          v718 = sub_1005B7E14(a2);
+          v718 = sub_1005B7E14(PiranhaMessage);
           sub_1000E0798(v717, v718);
           if ( *v676 )
             v719 = sub_100D1E4AC(*v676);
           else
             v719 = 0;
           sub_100D80308(v964);
-          v720 = sub_1005B7D98(a2);
+          v720 = sub_1005B7D98(PiranhaMessage);
           sub_100BA5698(v964, v720, "");
           v721 = off_101054C88;
           if ( off_101054C88 )
           {
-            sub_1004436B0(off_101054C88, v964, *(a2 + 356));
+            sub_1004436B0(off_101054C88, v964, *(PiranhaMessage + 356));
             if ( ((sub_1004435A0(v721) ^ 1 | v719) & 1) == 0 )
             {
               v722 = v673;
@@ -2748,20 +2748,20 @@ LABEL_962:
           v728 = off_101054C78;
           if ( off_101054C78 )
             v728 = sub_1001CC738(off_101054C78);
-          *(a1 + 20) |= v728;
+          *(this + 20) |= v728;
           if ( sub_1001F844C(off_101054C80) )
             v729 = 2;
           else
             v729 = 0;
-          v730 = *(a1 + 20) | v729 | (4 * (*(a1 + 28) != 0));
-          *(a1 + 20) = v730;
+          v730 = *(this + 20) | v729 | (4 * (*(this + 28) != 0));
+          *(this + 20) = v730;
           if ( off_101054C88 )
           {
             if ( sub_1004435B8(off_101054C88) )
               v731 = 8;
             else
               v731 = 0;
-            v730 = *(a1 + 20);
+            v730 = *(this + 20);
           }
           else
           {
@@ -2771,9 +2771,9 @@ LABEL_962:
             v732 = 16;
           else
             v732 = 0;
-          *(a1 + 20) = v731 | v732 | v730;
-          v733 = sub_1005B7A88(a2);
-          sub_100BA5698(a1 + 40, v733, "");
+          *(this + 20) = v731 | v732 | v730;
+          v733 = sub_1005B7A88(PiranhaMessage);
+          sub_100BA5698(this + 40, v733, "");
           sub_10060E4A4(*(v673 + 4), *(v673 + 8));
           operator delete();
           if ( v734 )
@@ -2781,10 +2781,10 @@ LABEL_962:
             sub_100D80350(v734);
             operator delete();
           }
-          if ( sub_1005B7E0C(a2) )
+          if ( sub_1005B7E0C(PiranhaMessage) )
           {
             v735 = (loc_1000DC03C)();
-            v736 = sub_1005B7E0C(a2);
+            v736 = sub_1005B7E0C(PiranhaMessage);
             v737 = &v958;
             sub_100D805D8(&v958, "");
             v738 = &v956;
@@ -2799,7 +2799,7 @@ LABEL_962:
           }
           else
           {
-            if ( !*(a2 + 352) || !*(sub_10050FFF8() + 1463) )
+            if ( !*(PiranhaMessage + 352) || !*(sub_10050FFF8() + 1463) )
               goto LABEL_1008;
             v746 = (loc_1000DC03C)();
             v737 = &v952;
@@ -2814,7 +2814,7 @@ LABEL_962:
             v743 = 34;
             v744 = 0LL;
           }
-          sub_1000DE354(v742, v743, v744, v739, v740, v741);
+          GameMain::showNativeDialog(v742, v743, v744, v739, v740, v741);
           sub_100D80350(v745);
           sub_100D80350(v738);
           sub_100D80350(v737);
@@ -2842,14 +2842,14 @@ LABEL_1008:
           case 21962:
             return;
           case 22000:
-            sub_1005D9574(a2, v863);
+            sub_1005D9574(PiranhaMessage, v863);
             sub_1003EE060(v863);
             return;
           case 22001:
             if ( sub_1003E6A44() )
             {
               v180 = sub_1003E6A44();
-              sub_1005D9270(a2, v862);
+              sub_1005D9270(PiranhaMessage, v862);
               sub_1003EE090(v180, v862);
             }
             return;
@@ -2874,15 +2874,15 @@ LABEL_1008:
         if ( v144 != 22185 )
           goto LABEL_611;
         v157 = off_101054C18;
-        sub_1005B584C(a2);
-        v158 = sub_1005B5854(a2);
+        sub_1005B584C(PiranhaMessage);
+        v158 = sub_1005B5854(PiranhaMessage);
         goto LABEL_586;
       }
       if ( v144 != 22287 )
       {
         if ( v144 == 22377 )
         {
-          sub_1005EA910(a2);
+          sub_1005EA910(PiranhaMessage);
           switch ( off_101054C80 )
           {
             case 0:
@@ -2902,7 +2902,7 @@ LABEL_1008:
         }
         goto LABEL_611;
       }
-      v441 = a2;
+      v441 = PiranhaMessage;
       v100 = off_101054CD0;
       v101 = sub_1005D9A54(v441);
       v103 = sub_1005D9A5C(v102);
@@ -2982,7 +2982,7 @@ LABEL_1167:
         {
           if ( off_101054CC0 )
           {
-            switch ( *(a2 + 144) )
+            switch ( *(PiranhaMessage + 144) )
             {
               case 1:
                 v427 = "TID_CAPITAL_RAID_SNAPSHOT_NOT_AVAILABLE";
@@ -3025,9 +3025,9 @@ LABEL_1167:
           goto LABEL_611;
         if ( sub_1003E6A44() )
         {
-          sub_1005E268C(a2, &v971);
-          sub_1005E269C(a2, &v971);
-          sub_1005E267C(a2, &v969);
+          sub_1005E268C(PiranhaMessage, &v971);
+          sub_1005E269C(PiranhaMessage, &v971);
+          sub_1005E267C(PiranhaMessage, &v969);
           *&v202 = operator new(1000LL);
           v204 = v203;
           v205 = sub_100476638(v202);
@@ -3042,13 +3042,13 @@ LABEL_1167:
           sub_100476C1C(v204, v210);
           sub_100476C58(v204, *(v969 + 6));
           sub_100476C78(v204, *(v969 + 7));
-          v211 = **(a2 + 168);
+          v211 = **(PiranhaMessage + 168);
           v212 = sub_1003F4DEC();
           v866 = v971;
           v867 = v204;
           v865 = 0LL;
-          v213 = *(a2 + 176);
-          sub_1005E26AC(a2, v864);
+          v213 = *(PiranhaMessage + 176);
+          sub_1005E26AC(PiranhaMessage, v864);
           sub_1003F538C(v212, v214, &v867, &v866, 0, 4LL, 11, 0, 0.0, &v865, -1, v213, 0, 0LL, v864);
           *(sub_1003F4DEC() + 200) = v211;
           if ( v969 )
@@ -3074,7 +3074,7 @@ LABEL_1167:
       if ( !off_101054CC0 )
         return;
       sub_100D805D8(&v971, "TID_DEVICE_LINK_ERROR_CODE_ERROR_0");
-      v424 = sub_1005E8248(a2);
+      v424 = sub_1005E8248(PiranhaMessage);
       v425 = "TID_ACCEPT_FRIEND_ERROR_GENERIC";
       if ( v424 == 2 )
         v425 = "TID_ACCEPT_FRIEND_ERROR_TOO_MANY_FRIENDS";
@@ -3101,8 +3101,8 @@ LABEL_819:
             if ( v449 )
             {
               v450 = v449;
-              sub_1005BA550(a2);
-              v451 = sub_1005BA59C(a2);
+              sub_1005BA550(PiranhaMessage);
+              v451 = sub_1005BA59C(PiranhaMessage);
               sub_10042D414(v450, v452, v451);
             }
           }
@@ -3111,9 +3111,9 @@ LABEL_819:
         if ( v453 )
         {
           v454 = v453;
-          sub_1005BA59C(a2);
+          sub_1005BA59C(PiranhaMessage);
           sub_1003E681C(v454);
-          v455 = sub_1005BA550(a2);
+          v455 = sub_1005BA550(PiranhaMessage);
           sub_1003EEE7C(v454, v455, v456);
         }
         return;
@@ -3121,7 +3121,7 @@ LABEL_819:
       if ( v144 == 22879 )
       {
         v269 = off_101054CE0;
-        v270 = sub_1005B9C50(a2);
+        v270 = sub_1005B9C50(PiranhaMessage);
         sub_1001A19B4(v269, v270);
         return;
       }
@@ -3139,11 +3139,11 @@ LABEL_819:
           if ( v168 )
           {
             v169 = v168;
-            v170 = sub_1005D3DC8(a2);
+            v170 = sub_1005D3DC8(PiranhaMessage);
             sub_1005A6EB4(v169, v170);
-            v171 = sub_1005D3DD8(a2);
+            v171 = sub_1005D3DD8(PiranhaMessage);
             sub_1005A6F00(v169, v171);
-            v172 = sub_1005D3DE8(a2);
+            v172 = sub_1005D3DE8(PiranhaMessage);
             sub_1005A7084(v169, v172);
           }
           operator new(40LL);
@@ -3159,24 +3159,24 @@ LABEL_819:
     {
       return;
     }
-    if ( *(a2 + 184) && *(off_101054BE8 + 64) )
+    if ( *(PiranhaMessage + 184) && *(off_101054BE8 + 64) )
     {
       if ( (sub_1004435A0(off_101054C88) & 1) != 0 || !off_101054CC0 )
         return;
       goto LABEL_410;
     }
-    v513 = sub_1005EA1C4(a2);
-    sub_1005EA1BC(a2, v513);
+    v513 = sub_1005EA1C4(PiranhaMessage);
+    sub_1005EA1BC(PiranhaMessage, v513);
     sub_100D80308(&v971);
     sub_100D80308(&v969);
     if ( sub_1004435A0(off_101054C88) )
     {
-      v514 = sub_1005EA1E4(a2);
+      v514 = sub_1005EA1E4(PiranhaMessage);
       if ( v514 )
       {
         v515 = v514;
         sub_100D80874(&v971, v514);
-        sub_1005EA1F4(a2, v515);
+        sub_1005EA1F4(PiranhaMessage, v515);
       }
       v516 = sub_1004435B0(off_101054C88);
       sub_100D80874(&v969, v516);
@@ -3187,14 +3187,14 @@ LABEL_819:
     {
       v517 = 0;
     }
-    v533 = sub_1005EA1AC(a2);
+    v533 = sub_1005EA1AC(PiranhaMessage);
     if ( v533 )
       sub_100D8060C(&v967, v533);
     else
       sub_100D805D8(&v967, "");
-    sub_1005EA1A4(a2, v533);
-    v548 = sub_1005EA184(a2);
-    sub_1005EA17C(a2, v548);
+    sub_1005EA1A4(PiranhaMessage, v533);
+    v548 = sub_1005EA184(PiranhaMessage);
+    sub_1005EA17C(PiranhaMessage, v548);
     v549 = sub_1001CC758(off_101054C78);
     v551 = off_101054CC0;
     if ( v517 )
@@ -3231,9 +3231,9 @@ LABEL_796:
       if ( !v513 || !v551 )
         goto LABEL_798;
     }
-    sub_1005EA17C(a2, v548);
+    sub_1005EA17C(PiranhaMessage, v548);
     operator new(528LL);
-    sub_100343348(v559, 9LL, a2);
+    sub_100343348(v559, 9LL, PiranhaMessage);
     sub_100226DB0();
     sub_100D805D8(&v965, "LastGCID");
     sub_100D805D8(v906, "");
@@ -3266,8 +3266,8 @@ LABEL_527:
                 v145 = off_101054CF0;
                 if ( off_101054CF0 )
                 {
-                  sub_100B8E344(*(a2 + 144));
-                  sub_100B8E344(*(a2 + 152));
+                  sub_100B8E344(*(PiranhaMessage + 144));
+                  sub_100B8E344(*(PiranhaMessage + 152));
                   sub_1001361A8(v145, v146);
                 }
                 return;
@@ -3277,7 +3277,7 @@ LABEL_527:
             if ( sub_1003E6A44() )
             {
               v307 = *(sub_1003E6A44() + 616);
-              v308 = sub_1005EF3F8(a2);
+              v308 = sub_1005EF3F8(PiranhaMessage);
               sub_100252750(v307, v308);
             }
             return;
@@ -3299,7 +3299,7 @@ LABEL_527:
                 v37 = *(off_101054CF0 + 77);
                 if ( v36 != v37 )
                 {
-                  v38 = *(a2 + 152);
+                  v38 = *(PiranhaMessage + 152);
                   v39 = off_101054CF0;
                   while ( 1 )
                   {
@@ -3342,7 +3342,7 @@ LABEL_527:
             }
             goto LABEL_611;
           }
-          v331 = sub_1005BA6B0(a2);
+          v331 = sub_1005BA6B0(PiranhaMessage);
           switch ( v331 )
           {
             case 10:
@@ -3350,7 +3350,7 @@ LABEL_527:
               sub_100D805D8(v877, "");
               sub_100D805D8(v876, "");
               sub_100D805D8(v875, "");
-              sub_1000DE354(v494, 8u, 0LL, v877, v876, v875);
+              GameMain::showNativeDialog(v494, 8u, 0LL, v877, v876, v875);
               sub_100D80350(v875);
               sub_100D80350(v876);
               v243 = v877;
@@ -3360,14 +3360,14 @@ LABEL_527:
               sub_100D805D8(v880, "");
               sub_100D805D8(v879, "");
               sub_100D805D8(v878, "");
-              sub_1000DE354(v495, 0xDu, 0LL, v880, v879, v878);
+              GameMain::showNativeDialog(v495, 0xDu, 0LL, v880, v879, v878);
               sub_100D80350(v878);
               sub_100D80350(v879);
               v243 = v880;
               break;
             case 4:
               v332 = qword_1010A1FA0;
-              sub_1005BA6B0(a2);
+              sub_1005BA6B0(PiranhaMessage);
               sub_1003F2FC0(v332);
               return;
             default:
@@ -3375,7 +3375,7 @@ LABEL_527:
               sub_100D805D8(v874, "");
               sub_100D805D8(v873, "");
               sub_100D805D8(v872, "");
-              sub_1000DE354(v496, 3u, 0LL, v874, v873, v872);
+              GameMain::showNativeDialog(v496, 3u, 0LL, v874, v873, v872);
               sub_100D80350(v872);
               sub_100D80350(v873);
               v243 = v874;
@@ -3387,10 +3387,10 @@ LABEL_823:
         }
         if ( v144 == 26771 )
         {
-          if ( a2 && off_101054CC0 )
+          if ( PiranhaMessage && off_101054CC0 )
           {
             sub_100D805D8(&v980, "");
-            v56 = *(a2 + 152);
+            v56 = *(PiranhaMessage + 152);
             if ( v56 <= 4 )
               sub_100D8076C(&v980, off_100EF2050[v56]);
             if ( sub_100D7FA94(&v980) >= 1 )
@@ -3415,7 +3415,7 @@ LABEL_823:
           return;
         if ( off_101054CC0 )
         {
-          v271 = sub_1005ED880(a2);
+          v271 = sub_1005ED880(PiranhaMessage);
           if ( v271 == 2 )
           {
             v272 = "TID_LIVE_REPLAY_FAIL_NO_FREE_SLOTS";
@@ -3450,7 +3450,7 @@ LABEL_736:
           case 28314:
             if ( off_101054CC0 )
             {
-              switch ( sub_1005BF330(a2) )
+              switch ( sub_1005BF330(PiranhaMessage) )
               {
                 case 2u:
                   v148 = "TID_ALLIANCE_INVITATION_FAILED_NO_RIGHTS";
@@ -3482,8 +3482,8 @@ LABEL_736:
             if ( *(sub_10050F614() + 716)
               && (!sub_1003F4DEC() || *(sub_1003F4DEC() + 120) <= 0.0 || *(sub_10050F614() + 717)) )
             {
-              v303 = sub_1005ED6A8(a2);
-              sub_1005ED698(a2, &v971);
+              v303 = sub_1005ED6A8(PiranhaMessage);
+              sub_1005ED698(PiranhaMessage, &v971);
               if ( sub_1003E6A44() && *(*(sub_1003E6A44() + 368) + 13LL) )
               {
                 sub_1003E6A44();
@@ -3506,20 +3506,20 @@ LABEL_736:
               else
               {
                 v899 = v971;
-                sub_1005ED5E4(a2, &v899);
+                sub_1005ED5E4(PiranhaMessage, &v899);
               }
               v523 = off_101054CC0;
               if ( off_101054CC0 )
               {
-                sub_1005ED6B0(a2);
-                v524 = sub_1005ED6B8(a2);
+                sub_1005ED6B0(PiranhaMessage);
+                v524 = sub_1005ED6B8(PiranhaMessage);
                 sub_1002241B0(v523, v525, v524);
               }
             }
             return;
           case 28321:
-            v825 = a2;
-            v826 = sub_1005EEE70(a2);
+            v825 = PiranhaMessage;
+            v826 = sub_1005EEE70(PiranhaMessage);
             v827 = v826;
             if ( qword_1010A20F0 && LogicLong::equals(qword_1010A20F0, v826) )
             {
@@ -3551,7 +3551,7 @@ LABEL_736:
         {
           if ( off_101054CF0 )
           {
-            v368 = sub_1005C7B54(a2);
+            v368 = sub_1005C7B54(PiranhaMessage);
             if ( off_101054D50 )
               sub_1000F812C(off_101054D50, v368);
             sub_100132998(off_101054CF0, v368);
@@ -3561,8 +3561,8 @@ LABEL_736:
         if ( v144 == 28075 )
         {
           operator new(152LL);
-          *(a1 + 80) = sub_1005B9638(v181);
-          v182 = sub_1005B97F4(a2);
+          *(this + 80) = sub_1005B9638(v181);
+          v182 = sub_1005B97F4(PiranhaMessage);
           *(v849 + 144) = v182;
           return;
         }
@@ -3587,8 +3587,8 @@ LABEL_477:
             if ( off_101054CC0 )
             {
               v217 = sub_10022C3C0(off_101054CC0);
-              sub_1005E5DC0(a2);
-              v355 = sub_1005E5DB8(a2);
+              sub_1005E5DC0(PiranhaMessage);
+              v355 = sub_1005E5DB8(PiranhaMessage);
               switch ( v356 )
               {
                 case 0:
@@ -3617,7 +3617,7 @@ LABEL_723:
           case 28988:
             if ( off_101054CC0 )
             {
-              switch ( *(a2 + 144) )
+              switch ( *(PiranhaMessage + 144) )
               {
                 case 3:
                   v359 = "TID_CHALLENGE_ALREADY_CLOSED";
@@ -3662,8 +3662,8 @@ LABEL_726:
               v23 = *(off_101054CF0 + 77);
               if ( v22 != v23 )
               {
-                v24 = *(a2 + 160);
-                v25 = *(a2 + 144);
+                v24 = *(PiranhaMessage + 160);
+                v25 = *(PiranhaMessage + 144);
                 v26 = off_101054CF0;
                 while ( 1 )
                 {
@@ -3720,7 +3720,7 @@ LABEL_726:
                 {
                   operator new(184LL);
                   v153 = v152;
-                  v154 = sub_1005E5FFC(a2);
+                  v154 = sub_1005E5FFC(PiranhaMessage);
                   sub_1001C2ACC(v153, v154);
                   sub_1001C31E8(v155, v153);
                 }
@@ -3740,7 +3740,7 @@ LABEL_726:
           }
           if ( !off_101054CC0 )
             return;
-          switch ( sub_1005D3050(a2) )
+          switch ( sub_1005D3050(PiranhaMessage) )
           {
             case 1u:
             case 2u:
@@ -3778,7 +3778,7 @@ LABEL_726:
           v435 = off_101054CF0;
           if ( off_101054CF0 )
           {
-            v436 = sub_1005C8434(a2);
+            v436 = sub_1005C8434(PiranhaMessage);
             v437 = v435;
             v2 = v435[76];
             if ( ((v435[77] - v2) >> 3) >= 1 )
@@ -3871,7 +3871,7 @@ LABEL_726:
         if ( v144 == 29388 )
         {
           v240 = sub_1003E6A44();
-          nullsub_58(v240, a2);
+          nullsub_58(v240, PiranhaMessage);
           sub_100D805D8(&v971, "Debugger");
           sub_100D805D8(&v969, "OutOfSync");
           sub_100D805D8(&v967, "");
@@ -3885,7 +3885,7 @@ LABEL_726:
           sub_100D805D8(v964, "");
           sub_100D805D8(v963, "");
           sub_100D805D8(v962, "");
-          sub_1000DE354(v242, 7u, 0LL, v964, v963, v962);
+          GameMain::showNativeDialog(v242, 7u, 0LL, v964, v963, v962);// Out of Sync Popup
           sub_100D80350(v962);
           sub_100D80350(v963);
           v243 = v964;
@@ -3894,13 +3894,13 @@ LABEL_726:
       }
 LABEL_611:
       if ( off_101054D50 )
-        sub_1000F6654(off_101054D50, a2);
+        sub_1000F6654(off_101054D50, PiranhaMessage);
       if ( off_101054DF0 )
-        sub_10045DDD0(a2);
-      v772 = (*(*a2 + 40LL))(a2);
+        sub_10045DDD0(PiranhaMessage);
+      v772 = (*(*PiranhaMessage + 40LL))(PiranhaMessage);
       if ( v772 == 26074 )
       {
-        switch ( *(a2 + 144) )
+        switch ( *(PiranhaMessage + 144) )
         {
           case 0:
             sub_100D805D8(&v980, "TID_SPELL_FACTORY_VOUCHER_CLAIM_FAILED_TITLE");
@@ -3947,8 +3947,8 @@ LABEL_1252:
           return;
         if ( v144 != 40000 )
           goto LABEL_611;
-        sub_100D88314(*(a2 + 144));
-        sub_100D82FA4("AdUpdateConversionValueMessage received: conversionValue %d", &v971, *(a2 + 144));
+        sub_100D88314(*(PiranhaMessage + 144));
+        sub_100D82FA4("AdUpdateConversionValueMessage received: conversionValue %d", &v971, *(PiranhaMessage + 144));
         goto LABEL_822;
       }
       if ( v144 != 29808 )
@@ -3958,7 +3958,7 @@ LABEL_1252:
         v162 = off_101054BE8;
         if ( !off_101054BE8 )
           return;
-        v163 = sub_100B90798(a2);
+        v163 = sub_100B90798(PiranhaMessage);
         if ( !v163 )
         {
           sub_100B89308("Null SCID notification token!", 1);
@@ -3971,12 +3971,12 @@ LABEL_774:
         operator delete();
         return;
       }
-      if ( sub_1005E9784(a2) == 2 )
+      if ( sub_1005E9784(PiranhaMessage) == 2 )
       {
         v324 = off_101054C78;
         if ( !off_101054C78 )
           return;
-        v119 = sub_1005E978C(a2);
+        v119 = sub_1005E978C(PiranhaMessage);
         sub_1001CC9F4(v324);
         if ( *(v119 + 12) >= 1 )
         {
@@ -4070,12 +4070,12 @@ LABEL_1184:
           operator delete[](*v119);
         goto LABEL_1205;
       }
-      if ( sub_1005E9784(a2) == 3 )
+      if ( sub_1005E9784(PiranhaMessage) == 3 )
       {
         v477 = off_101054C88;
         if ( !off_101054C88 )
           return;
-        v776 = sub_1005E978C(a2);
+        v776 = sub_1005E978C(PiranhaMessage);
         sub_100D82FA4("Tencent Friends received from game server (count %d)", &v972, *(v776 + 12));
         sub_100D80350(&v972);
         sub_100443444(v477);
@@ -4175,14 +4175,14 @@ LABEL_1205:
         operator delete();
         return;
       }
-      if ( sub_1005E9784(a2) )
+      if ( sub_1005E9784(PiranhaMessage) )
       {
-        if ( sub_1005E9784(a2) == 5 )
+        if ( sub_1005E9784(PiranhaMessage) == 5 )
         {
           v497 = off_101054BE8;
           if ( off_101054BE8 )
           {
-            v498 = sub_1005E978C(a2);
+            v498 = sub_1005E978C(PiranhaMessage);
             v499 = v497;
             v748 = v498;
             v749 = v499;
@@ -4314,7 +4314,7 @@ LABEL_1220:
       v547 = off_101054CD0;
       if ( !off_101054CD0 )
         return;
-      v78 = sub_1005E978C(a2);
+      v78 = sub_1005E978C(PiranhaMessage);
       sub_1001CB104(v547);
       if ( *(v78 + 12) < 1 )
       {
@@ -4424,28 +4424,28 @@ LABEL_1140:
           goto LABEL_611;
         if ( sub_1003E6A44() )
         {
-          v186 = sub_1005D5D84(a2);
+          v186 = sub_1005D5D84(PiranhaMessage);
           *&v187 = operator new(1000LL);
           v189 = v188;
           sub_100476638(v187);
-          v190 = sub_1005D5D64(a2);
+          v190 = sub_1005D5D64(PiranhaMessage);
           sub_100476970(v189, v190);
           sub_100B8E410(*(v186 + 8));
           v192 = sub_1004769D4(v189, v191);
           v193 = sub_10040EB18(v192, v186);
           if ( v193 )
             (*(*v189 + 152LL))(v189, v193);
-          v194 = sub_1005D5E20(a2);
+          v194 = sub_1005D5E20(PiranhaMessage);
           v195 = sub_1003F4DEC();
           v912 = v189;
-          sub_1005D5D74(a2, &v971);
+          sub_1005D5D74(PiranhaMessage, &v971);
           v911 = v971;
           if ( v194 == 1 )
             v196 = 4;
           else
             v196 = 1;
           v910 = 0LL;
-          v197 = *(a2 + 164);
+          v197 = *(PiranhaMessage + 164);
           v909 = 0LL;
           sub_1003F538C(v195, v186, &v912, &v911, 0, 4LL, v196, 0, 0.0, &v910, -1, v197, 0, 0LL, &v909);
           if ( !v198 )
@@ -4454,13 +4454,13 @@ LABEL_1140:
         }
         goto LABEL_618;
       }
-      sub_100D8060C(&v971, a2 + 144);
+      sub_100D8060C(&v971, PiranhaMessage + 144);
       if ( sub_100D82AD0(&v971, "TID_") )
       {
         v395 = sub_100372DE0(&v971);
         sub_100D80874(&v971, v395);
       }
-      sub_100D8060C(&v969, a2 + 160);
+      sub_100D8060C(&v969, PiranhaMessage + 160);
       v396 = sub_100D82AD0(&v969, "TID_");
       if ( v396 )
       {
@@ -4468,19 +4468,19 @@ LABEL_1140:
         v396 = sub_100D80874(&v969, v397);
       }
       v398 = (loc_1000DC03C)(v396);
-      v399 = *(a2 + 176);
+      v399 = *(PiranhaMessage + 176);
       sub_100D8060C(v861, &v969);
       sub_100D805D8(v860, "");
       sub_100D8060C(v859, &v971);
-      sub_1000DE354(v398, 0x24u, v399, v861, v860, v859);
+      GameMain::showNativeDialog(v398, 0x24u, v399, v861, v860, v859);
       sub_100D80350(v859);
       sub_100D80350(v860);
       v400 = v861;
       goto LABEL_526;
     }
-    if ( *(a2 + 144) < 1 )
+    if ( *(PiranhaMessage + 144) < 1 )
       return;
-    v385 = sub_1005BC924(a2);
+    v385 = sub_1005BC924(PiranhaMessage);
     v971 = 0LL;
     if ( sub_100D6ABA0(v385, v386, &v971, 0) >= 1 )
     {
@@ -4490,14 +4490,14 @@ LABEL_1140:
       sub_100D805A4(v388, v387, v390);
       sub_1003F4DEC();
       v903 = v389;
-      sub_1005BCB24(a2, v902);
-      if ( *(a2 + 176) )
+      sub_1005BCB24(PiranhaMessage, v902);
+      if ( *(PiranhaMessage + 176) )
         v392 = 13;
       else
         v392 = 11;
       sub_1003F4F08(v391, &v903, v902, v392);
       sub_1003F4DEC();
-      sub_1005BCB14(a2, v901);
+      sub_1005BCB14(PiranhaMessage, v901);
       sub_1003F5024(v393, v901);
     }
     if ( v385 )
@@ -4521,14 +4521,14 @@ LABEL_742:
           {
             if ( v144 != 25942 )
               goto LABEL_611;
-            if ( !off_101054CC0 || *(a2 + 144) != 6 )
+            if ( !off_101054CC0 || *(PiranhaMessage + 144) != 6 )
               return;
             v148 = "TID_FRIENDLY_DISTRICT_CHALLENGE_CLOSED";
 LABEL_818:
             sub_100D805D8(&v971, v148);
             goto LABEL_819;
           }
-          v309 = sub_100B90F98(a2);
+          v309 = sub_100B90F98(PiranhaMessage);
           switch ( v309 )
           {
             case 3:
@@ -4540,7 +4540,7 @@ LABEL_818:
               sub_100D805D8(v883, "");
               sub_100D805D8(v882, "");
               sub_100D805D8(v881, "");
-              sub_1000DE354(v493, 0x13u, 0LL, v883, v882, v881);
+              GameMain::showNativeDialog(v493, 0x13u, 0LL, v883, v882, v881);
               sub_100D80350(v881);
               sub_100D80350(v882);
               v243 = v883;
@@ -4550,7 +4550,7 @@ LABEL_818:
               sub_100D805D8(v886, "");
               sub_100D805D8(v885, "");
               sub_100D805D8(v884, "");
-              sub_1000DE354(v310, 0xCu, 0LL, v886, v885, v884);
+              GameMain::showNativeDialog(v310, 0xCu, 0LL, v886, v885, v884);
               sub_100D80350(v884);
               sub_100D80350(v885);
               v243 = v886;
@@ -4592,8 +4592,8 @@ LABEL_822:
         }
         if ( v144 != 26172 )
           goto LABEL_611;
-        v226 = sub_1005E5ACC(a2);
-        v227 = sub_1005E5AD4(a2);
+        v226 = sub_1005E5ACC(PiranhaMessage);
+        v227 = sub_1005E5AD4(PiranhaMessage);
         if ( *v228 )
         {
           v229 = v227;
@@ -4638,7 +4638,7 @@ LABEL_848:
           {
             v174 = sub_10022C2FC(off_101054CC0);
             v175 = sub_1000FD6C8(v174);
-            if ( sub_1005BC1C0(a2) == 2 )
+            if ( sub_1005BC1C0(PiranhaMessage) == 2 )
             {
               sub_100D805D8(&v971, "TID_INVALID_DESCRIPTION");
               sub_10022BD7C(&v971, 1LL, 0LL, 0.0);
@@ -4649,7 +4649,7 @@ LABEL_848:
           }
           else
           {
-            sub_1005BC1C0(a2);
+            sub_1005BC1C0(PiranhaMessage);
           }
           return;
         }
@@ -4661,22 +4661,22 @@ LABEL_848:
           goto LABEL_611;
         if ( sub_1003E6A44() )
         {
-          v273 = sub_1005EC634(a2);
+          v273 = sub_1005EC634(PiranhaMessage);
           *&v274 = operator new(1000LL);
           v276 = v275;
           sub_100476638(v274);
-          v277 = sub_1005EC550(a2);
+          v277 = sub_1005EC550(PiranhaMessage);
           sub_100476970(v276, v277);
           sub_100B8E410(*(v273 + 8));
           v279 = sub_1004769D4(v276, v278);
           v280 = sub_10040EB18(v279, v273);
           if ( v280 )
             (*(*v276 + 152LL))(v276, v280);
-          if ( sub_1005EC644(a2) )
+          if ( sub_1005EC644(PiranhaMessage) )
             v281 = 3;
           else
             v281 = 2;
-          v282 = sub_1005EC64C(a2);
+          v282 = sub_1005EC64C(PiranhaMessage);
           if ( v282 )
           {
             v283 = sub_1003E6A44();
@@ -4695,13 +4695,13 @@ LABEL_848:
             sub_100476C78(v276, v292);
             v281 = 10;
           }
-          v293 = sub_1005EC570(a2);
+          v293 = sub_1005EC570(PiranhaMessage);
           v294 = sub_1003F4DEC();
           v871 = v276;
-          sub_1005EC560(a2, &v971);
+          sub_1005EC560(PiranhaMessage, &v971);
           v869 = 0LL;
           v870 = v971;
-          v295 = *(a2 + 144);
+          v295 = *(PiranhaMessage + 144);
           v868 = v282;
           sub_1003F538C(v294, v273, &v871, &v870, 0, 4LL, v281, 0, 0.0, &v869, -1, v295, 0, 0LL, &v868);
           v296 = sub_1003F4DEC();
@@ -4727,7 +4727,7 @@ LABEL_636:
       v463 = sub_1001C307C(v462);
       if ( (*(*v463 + 392LL))(v463) != 5 )
         return;
-      v464 = sub_1005E5640(a2);
+      v464 = sub_1005E5640(PiranhaMessage);
       if ( v464 > 1 )
       {
         if ( v464 == 2 )
@@ -4752,8 +4752,8 @@ LABEL_764:
         if ( !v464 )
         {
           operator new(216LL);
-          v564 = sub_1005E5638(a2);
-          sub_1005E5648(a2);
+          v564 = sub_1005E5638(PiranhaMessage);
+          sub_1005E5648(PiranhaMessage);
           sub_1001C0FD0(v565, v564);
 LABEL_724:
           sub_1001C31E8(v217, v526);
@@ -4783,8 +4783,8 @@ LABEL_847:
         {
           if ( v144 == 25874 )
           {
-            v252 = sub_1005BAA04(a2);
-            v253 = sub_1005BA9F4(a2);
+            v252 = sub_1005BAA04(PiranhaMessage);
+            v253 = sub_1005BA9F4(PiranhaMessage);
             v254 = v253;
             if ( *v255 && !sub_100B8E370(v253) && *(v252 + 4) )
             {
@@ -4814,7 +4814,7 @@ LABEL_847:
           }
           else if ( sub_1003E6A44() && (sub_1003E6A44(), dword_101054E90 == 6) )
           {
-            if ( sub_1005EF9B4(a2) == 1 )
+            if ( sub_1005EF9B4(PiranhaMessage) == 1 )
               v445 = 4;
             else
               v445 = 1;
@@ -4824,14 +4824,14 @@ LABEL_847:
             v445 = 0;
           }
           sub_1003F4DEC();
-          v489 = sub_1005EF8B8(a2);
-          sub_1005EF8D0(a2, &v971);
+          v489 = sub_1005EF8B8(PiranhaMessage);
+          sub_1005EF8D0(PiranhaMessage, &v971);
           v916 = v971;
-          sub_1005EF8EC(a2, &v969);
+          sub_1005EF8EC(PiranhaMessage, &v969);
           v915 = v969;
-          v490 = sub_1005EF8A8(a2);
+          v490 = sub_1005EF8A8(PiranhaMessage);
           v914 = 0LL;
-          v491 = *(a2 + 180);
+          v491 = *(PiranhaMessage + 180);
           v913 = 0LL;
           sub_1003F538C(v492, v489, &v916, &v915, v490, 4LL, v445, 0, 0.0, &v914, -1, v491, 0, 0LL, &v913);
           return;
@@ -4842,8 +4842,8 @@ LABEL_618:
       }
       if ( v144 == 25367 )
       {
-        v313 = *(a2 + 192);
-        v314 = a2 + 144;
+        v313 = *(PiranhaMessage + 192);
+        v314 = PiranhaMessage + 144;
         v68 = off_101054C18;
         if ( v313 == 1 )
         {
@@ -4888,7 +4888,7 @@ LABEL_228:
       if ( v144 == v159 )
       {
         if ( off_101054C68 )
-          sub_1002666C4(off_101054C68, a2);
+          sub_1002666C4(off_101054C68, PiranhaMessage);
         return;
       }
       goto LABEL_611;
@@ -4897,7 +4897,7 @@ LABEL_228:
     {
       if ( off_101054BE8 )
       {
-        v370 = sub_1005F2040(a2);
+        v370 = sub_1005F2040(PiranhaMessage);
         if ( v370 )
         {
           sub_100D830B0(v370, &v969);
@@ -4908,11 +4908,11 @@ LABEL_228:
         }
         else
         {
-          v500 = sub_1005F2048(a2);
+          v500 = sub_1005F2048(PiranhaMessage);
           sub_10042A984(v501, v500);
           sub_100D80350(v500);
           operator delete();
-          *(a1 + 20) |= 0x10u;
+          *(this + 20) |= 0x10u;
           if ( sub_1003E6A44() )
           {
             v502 = sub_1003E6A44();
@@ -4935,7 +4935,7 @@ LABEL_228:
           v372 = sub_1003E6A44();
           sub_1003ED9CC(v372);
         }
-        sub_1005EE6CC(a2, &v969);
+        sub_1005EE6CC(PiranhaMessage, &v969);
         if ( v969 && *(v969 + 984) )
           sub_100B89308("OwnHomeData should not be leased", 1);
         v373 = v969;
@@ -4945,7 +4945,7 @@ LABEL_228:
         if ( sub_1003F4DEC() )
         {
           v374 = sub_1003F4DEC();
-          sub_10040F204((v374 + 352), a2 + 216);
+          sub_10040F204((v374 + 352), PiranhaMessage + 216);
         }
         if ( v969 )
           v375 = (*(*v969 + 24))(v969);
@@ -4954,40 +4954,40 @@ LABEL_228:
         if ( sub_1003E6A44() && !**(sub_1003E6A44() + 368) )
         {
           sub_1003F4DEC();
-          v503 = sub_1005EE7A0(a2);
+          v503 = sub_1005EE7A0(PiranhaMessage);
           *(v504 + 124) = v503;
           sub_1003F4DEC();
-          v505 = sub_1005EE7A8(a2);
+          v505 = sub_1005EE7A8(PiranhaMessage);
           sub_1003F5CD4(v506, v505);
-          *(sub_1003F4DEC() + 128) = *(a2 + 160);
+          *(sub_1003F4DEC() + 128) = *(PiranhaMessage + 160);
           sub_1003E6A44();
-          v507 = sub_1005EE6BC(a2);
+          v507 = sub_1005EE6BC(PiranhaMessage);
           v508 = v969;
-          v509 = sub_1005EE6B4(a2);
+          v509 = sub_1005EE6B4(PiranhaMessage);
           v961 = 0LL;
-          v510 = sub_1005EE7B0(a2);
+          v510 = sub_1005EE7B0(PiranhaMessage);
           v960 = 0LL;
           sub_1003EAE50(v511, v507, v508, 0LL, v509, 1, 0, 0, &v961, v510, &v960);
         }
         else
         {
-          sub_1005EE790(a2);
-          v478 = sub_1005EE798(a2);
+          sub_1005EE790(PiranhaMessage);
+          v478 = sub_1005EE798(PiranhaMessage);
           if ( *(sub_1003F4DEC() + 56) )
           {
             v479 = sub_1003F4DEC();
             sub_1003F5C64(v479);
           }
           v480 = sub_1003F4DEC();
-          v481 = sub_1005EE6BC(a2);
+          v481 = sub_1005EE6BC(PiranhaMessage);
           v958 = 0LL;
           v959 = v969;
-          v482 = sub_1005EE6B4(a2);
+          v482 = sub_1005EE6B4(PiranhaMessage);
           v957 = 0LL;
-          v483 = sub_1005EE7A0(a2);
-          v484 = sub_1005EE7A8(a2);
-          v485 = *(a2 + 160);
-          v486 = sub_1005EE7B0(a2);
+          v483 = sub_1005EE7A0(PiranhaMessage);
+          v484 = sub_1005EE7A8(PiranhaMessage);
+          v485 = *(PiranhaMessage + 160);
+          v486 = sub_1005EE7B0(PiranhaMessage);
           v956 = 0LL;
           sub_1003F538C(v480, v481, &v959, &v958, v482, 1LL, v487, v478, 0.0, &v957, v483, v484, v485, v486, &v956);
           sub_100D805D8(&v971, "TOWN");
@@ -5003,7 +5003,7 @@ LABEL_228:
       goto LABEL_611;
     if ( !off_101054CC0 )
       return;
-    if ( sub_1005EF53C(a2) == 5 )
+    if ( sub_1005EF53C(PiranhaMessage) == 5 )
       v183 = "TID_VISIT_FAILED_RESTRICTED";
     else
       v183 = "TID_VISIT_FAILED";
@@ -5023,12 +5023,12 @@ LABEL_655:
       {
         if ( v144 == 24550 )
         {
-          v325 = *(a2 + 148);
+          v325 = *(PiranhaMessage + 148);
           if ( sub_10019E82C(off_101054C18) )
-            sub_10019E9DC(*v326, a2 + 152, *(a2 + 144), v325 & 1);
+            sub_10019E9DC(*v326, PiranhaMessage + 152, *(PiranhaMessage + 144), v325 & 1);
           if ( sub_1001A11A4(off_101054CE0) )
           {
-            v328 = *(a2 + 144);
+            v328 = *(PiranhaMessage + 144);
             v75 = v325 & 1;
             v76 = *v327;
             sub_100D830B0(v328, &v972);
@@ -5051,7 +5051,7 @@ LABEL_655:
           v164 = off_101054CF0;
           if ( off_101054CF0 )
           {
-            v165 = sub_100B8E344(*(a2 + 144));
+            v165 = sub_100B8E344(*(PiranhaMessage + 144));
             sub_100B8E330(&v981, v165);
             sub_100135FDC(v164, &v981);
           }
@@ -5067,8 +5067,8 @@ LABEL_655:
           if ( v266 )
           {
             v267 = v266;
-            sub_1005EE960(a2);
-            sub_1005EE968(a2);
+            sub_1005EE960(PiranhaMessage);
+            sub_1005EE968(PiranhaMessage);
             sub_1003EEF44(v267, v268);
           }
           return;
@@ -5076,8 +5076,8 @@ LABEL_655:
         goto LABEL_611;
       }
       v157 = off_101054C18;
-      sub_1005B51D0(a2);
-      v158 = sub_1005B51D8(a2);
+      sub_1005B51D0(PiranhaMessage);
+      v158 = sub_1005B51D8(PiranhaMessage);
       goto LABEL_586;
     }
     if ( v144 != 24346 )
@@ -5089,8 +5089,8 @@ LABEL_655:
           v199 = off_101054CC0;
           if ( off_101054CC0 )
           {
-            sub_1005EDE84(a2);
-            v200 = sub_1005EDE8C(a2);
+            sub_1005EDE84(PiranhaMessage);
+            v200 = sub_1005EDE8C(PiranhaMessage);
             sub_1002241B0(v199, v201, v200);
           }
           return;
@@ -5104,7 +5104,7 @@ LABEL_655:
       v474 = "NpcDataMessage received but GameMode is null!";
       goto LABEL_636;
     }
-    v414 = sub_1005EE09C(a2);
+    v414 = sub_1005EE09C(PiranhaMessage);
     v415 = *(v414 + 40);
     if ( v415 < 1 )
     {
@@ -5119,15 +5119,15 @@ LABEL_655:
       sub_100D805A4(&v971, v969, v417);
       sub_1001BA464(v418, &v971);
       sub_100D80350(&v971);
-      v419 = 8 * *(a2 + 176);
+      v419 = 8 * *(PiranhaMessage + 176);
       v420 = sub_1003F4DEC();
-      sub_1005EE0BC(a2, &v971);
+      sub_1005EE0BC(PiranhaMessage, &v971);
       v955 = v971;
-      sub_1005EE0AC(a2, &v967);
+      sub_1005EE0AC(PiranhaMessage, &v967);
       v954 = v967;
-      v421 = sub_1005EE094(a2);
+      v421 = sub_1005EE094(PiranhaMessage);
       v953 = 0LL;
-      v422 = *(a2 + 180);
+      v422 = *(PiranhaMessage + 180);
       v952 = 0LL;
       sub_1003F538C(v420, v423, &v955, &v954, v421, 2LL, v419, 0, 0.0, &v953, -1, v422, 0, 0LL, &v952);
       sub_100D805D8(&v971, "BATTLE");
@@ -5149,7 +5149,7 @@ LABEL_655:
     {
       if ( v144 == 24108 )
       {
-        sub_1005EB75C(a2, &v971);
+        sub_1005EB75C(PiranhaMessage, &v971);
         if ( v971 )
         {
           if ( sub_1003E6A44()
@@ -5186,14 +5186,14 @@ LABEL_655:
       return;
     if ( !off_101054CC0 )
       return;
-    v362 = sub_1005F7AB4(a2);
+    v362 = sub_1005F7AB4(PiranhaMessage);
     if ( !v362 )
       return;
-    sub_1005F7AAC(a2, v362);
-    v363 = sub_1005F7A7C(a2);
-    sub_1005F7A74(a2, v363);
+    sub_1005F7AAC(PiranhaMessage, v362);
+    v363 = sub_1005F7A7C(PiranhaMessage);
+    sub_1005F7A74(PiranhaMessage, v363);
     operator new(528LL);
-    sub_100343348(v364, 9LL, a2);
+    sub_100343348(v364, 9LL, PiranhaMessage);
 LABEL_652:
     sub_100226DB0();
     return;
@@ -5203,14 +5203,14 @@ LABEL_652:
     if ( v144 == 24124 )
     {
       if ( off_101054CF0 )
-        sub_100133194(off_101054CF0, *(a2 + 144), *(a2 + 152));
+        sub_100133194(off_101054CF0, *(PiranhaMessage + 144), *(PiranhaMessage + 152));
       return;
     }
     if ( v144 != 24132 )
       goto LABEL_611;
     if ( off_101054CC0 )
     {
-      if ( *(a2 + 144) == 3 )
+      if ( *(PiranhaMessage + 144) == 3 )
         v156 = "TID_CHALLENGE_ALREADY_CLOSED";
       else
         v156 = "TID_ALLIANCE_WAR_VISIT_FAILED";
@@ -5235,7 +5235,7 @@ LABEL_652:
     v439 = off_101054C88;
     if ( !off_101054C88 )
       return;
-    v245 = sub_1005F82B8(a2);
+    v245 = sub_1005F82B8(PiranhaMessage);
     v246 = v439;
     v248 = v440;
     v249 = 0;
@@ -5247,7 +5247,7 @@ LABEL_652:
     v244 = off_101054C88;
     if ( !off_101054C88 )
       return;
-    v245 = sub_1005F8C54(a2);
+    v245 = sub_1005F8C54(PiranhaMessage);
     v246 = v244;
     v248 = v247;
     v249 = 1;
