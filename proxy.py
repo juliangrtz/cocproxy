@@ -2,9 +2,10 @@
 import os
 import sys
 import frida
-import time
+from datetime import datetime
 
 PACKET_FILE_EXTENSION = ".bin"
+packetCounter = 0
 
 print("[+] Getting USB device...")
 device = frida.get_usb_device(timeout=2)
@@ -41,14 +42,17 @@ s = open("proxy.js", "r").read()
 script = session.create_script(s)
 
 # Create directory for dumped packets
-timestr = time.strftime("%Y%m%d-%H%M%S")
+timestr = datetime.now().strftime("%Y%m%d-%H%M%S")
 dumpDir = f"dump_{timestr}"
 os.mkdir(dumpDir)
 
 # Message handler
 def on_message(message, data):
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    with open(f"{dumpDir}/{timestr}_{message["payload"]}{PACKET_FILE_EXTENSION}", "wb", ) as file:
+    global packetCounter
+    timestr = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
+    packetCounter += 1
+    
+    with open(f"{dumpDir}/{packetCounter}_{message["payload"]}_{timestr}_{PACKET_FILE_EXTENSION}", "wb", ) as file:
         file.write(data)
 
 script.on('message', on_message)
