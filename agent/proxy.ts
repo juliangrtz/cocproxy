@@ -115,3 +115,14 @@ function hookPepperDecrypter() {
 hookSend();
 hookRecv();
 hookLogin();
+
+// Interceptor.attach(Offsets.MESSAGING_SEND, {
+//     onEnter(args) {
+//         //console.log(hexdump(args[1], {length: 200}))
+//         //console.log(hexdump((args[1].add(40)).readPointer().readPointer(), {length: 2}))
+
+//         var getMessageTypeFunc = new NativeFunction(args[1].add(40), 'long', []);
+//         var messageId = getMessageTypeFunc();
+//         console.log("Messaging::send " + messageId);
+//     }
+// });

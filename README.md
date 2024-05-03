@@ -4,6 +4,7 @@ MITM proxy for the current iOS version of Clash of Clans (v16.253).
 
 ## Requirements
 
+- Python3
 - Node.js
 - Frida
 - Jailbroken iOS device
@@ -14,8 +15,7 @@ MITM proxy for the current iOS version of Clash of Clans (v16.253).
 ```
 git clone https://github.com/juliangrtz/cocproxy && cd cocproxy
 npm install
-npm run build
-frida -Uf com.supercell.magic -l _proxy.js
+python proxy.py
 ```
 
 ## Sample output
