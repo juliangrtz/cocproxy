@@ -6,7 +6,7 @@ import { idaAddressToMemoryAddress } from "./utils.js";
 
 // v16.253
 export class Offsets {
-    static MESSAGING_ONRECEIVE = idaAddressToMemoryAddress(ptr("0x100408C2C"));
+    static MESSAGING_ONRECEIVE = idaAddressToMemoryAddress(ptr("0x100408CF4"));
     static MESSAGING_SEND = idaAddressToMemoryAddress(ptr("0x100D6F23C"));
     static MESSAGING_SEND_PEPPER_LOGIN = idaAddressToMemoryAddress(ptr("0x100D7DD94"));
     static MESSAGING_WRITE_HEADER = idaAddressToMemoryAddress(ptr("0x100D70F30"));
