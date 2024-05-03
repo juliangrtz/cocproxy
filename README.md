@@ -1,6 +1,6 @@
 # cocproxy
 
-MITM proxy for the current iOS version of Clash of Clans (v16.253).
+MITM proxy for the current iOS version of Clash of Clans (v16.253). It is currently very unstable and only intended to quickly get a few decrypted payloads.
 
 ## Requirements
 
