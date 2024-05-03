@@ -54,6 +54,8 @@ MOV W0, #packetId
 RET
 */
 export const Messages: Record<number, string> = {
+    '0': 'Unknown',
+
     // Client Messages (10xxx)
     '10100': 'ClientHello',
     '10101': 'Login',
