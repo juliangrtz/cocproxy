@@ -2,6 +2,9 @@
 import os
 import sys
 import frida
+import time
+
+PACKET_FILE_EXTENSION = ".bin"
 
 print("[+] Getting USB device...")
 device = frida.get_usb_device(timeout=2)
@@ -29,10 +32,30 @@ if not os.path.exists("proxy.js"):
     print("[-] Unable to find proxy.js. Run 'npm install' in this directory first.")
     exit(-1)
 
+# Spawn process and attach to it
 coc_pid = device.spawn(identifier)
 session = device.attach(coc_pid)
+
+# Create script
 s = open("proxy.js", "r").read()
 script = session.create_script(s)
+
+# Create directory for dumped packets
+timestr = time.strftime("%Y%m%d-%H%M%S")
+dumpDir = f"dump_{timestr}"
+os.mkdir(dumpDir)
+
+# Message handler
+def on_message(message, data):
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    with open(f"{dumpDir}/{timestr}_{message["payload"]}{PACKET_FILE_EXTENSION}", "wb", ) as file:
+        file.write(data)
+
+script.on('message', on_message)
+
+# Load script
 script.load()
+
+# Resume process
 device.resume(coc_pid)
 sys.stdin.read()

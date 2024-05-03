@@ -65,5 +65,4 @@ Login (10101)
 - How can I contribute?
   - Update the offsets for new versions (agent/offsets.ts)
   - Add new packet IDs (agent/packet.ts)
-  - Add ability to dump packets to files
   - Improve stability

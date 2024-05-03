@@ -31,7 +31,7 @@ export class Packet {
         return new Packet(messageId, direction, payloadLength, version, encryptedMessage);
     }
 
-    log() {
+    logPayload() {
         let hexdumpOptions: HexdumpOptions = {
             ansi: true,
             header: false,
