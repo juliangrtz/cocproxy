@@ -18,6 +18,11 @@ npm install
 python proxy.py
 ```
 
+To rebuild the proxy on the fly:
+```
+npm run watch
+```
+
 ## Sample output
 
 ```shell
