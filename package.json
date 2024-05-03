@@ -6,7 +6,8 @@
   "main": "agent/proxy.ts",
   "scripts": {
     "prepare": "npm run build",
-    "build": "esbuild agent/proxy.ts --bundle --outfile=proxy.js"
+    "build": "esbuild agent/proxy.ts --bundle --outfile=proxy.js",
+    "watch": "esbuild agent/proxy.ts --bundle --watch --outfile=proxy.js"
   },
   "devDependencies": {
     "@types/frida-gum": "^18.7.0",
